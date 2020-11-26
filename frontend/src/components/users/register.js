@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import AppContainer from '../AppContainer';
+import RegisterFormContainer from '../containers/RegisterFormContainer';
 import api from '../../api';
 
 
@@ -27,7 +27,7 @@ export default function Register() {
     };
 
     return (
-        <AppContainer title="Enter Your Information">
+        <RegisterFormContainer title="Enter Your Information">
         <form>
             <div className="form-group">
                 <label>Name</label>
@@ -71,6 +71,6 @@ export default function Register() {
                 </button>
             </div>
         </form>
-        </AppContainer>
+        </RegisterFormContainer>
     );
 };

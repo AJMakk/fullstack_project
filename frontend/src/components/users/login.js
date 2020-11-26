@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import AppContainer from '../AppContainer';
+import AppContainer from '../containers/AppContainer';
 import api from '../../api';
 import {Link} from 'react-router-dom';
 
@@ -23,17 +23,30 @@ export default function Login() {
                 email, password
             })
             .then(res=> {
-                localStorage.setItem('AccessToken', res.data.access_token);
-                console.log("res: ",res.data.access_token);
+                if (!res.data.user) {
+                    alert(res.data.message)
+                }
+                else {
+                    localStorage.setItem('AccessToken', res.data.access_token);
+                    localStorage.setItem('UsersName', res.data.user.name);
+                    console.log("res: ",res.data.access_token);
+                    history.push('/expenses');
+                    window.location.reload();
+                }
             });
-            history.push('/expenses');
-            window.location.reload();
         }catch {
             alert('Failed to Login');
         } finally {
             setLoading(false);
         }
     };
+
+    if (localStorage.getItem('AccessToken')) {
+        return (
+            
+            <h6><b>You are already logged in !</b></h6>   
+        );
+    }
 
     return (
         <AppContainer title="Login">

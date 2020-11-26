@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import AppContainer from '../AppContainer';
+import TableContainer from '../containers/TableContainer';
 import api from '../../api';
 import {useEffect, useState} from 'react';
 
@@ -51,8 +51,15 @@ export default function Categories() {
         ))
     }
 
+    if (!localStorage.getItem('AccessToken')) {
+        return (
+            
+            <h6><b>Please Log in !</b></h6>   
+        );
+    }
+    
     return (
-        <AppContainer title="Categories Table">
+        <TableContainer title="Categories Table">
         
             <Link to="/categories/add" className="btn btn-primary">Add Category</Link>
                     <div className = "table-responsive">
@@ -69,6 +76,6 @@ export default function Categories() {
                             </tbody>
                         </table>
                     </div>
-        </AppContainer>
+        </TableContainer>
     );
 }

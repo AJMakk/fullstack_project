@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import AppContainer from '../AppContainer';
+import TableContainer from '../containers/TableContainer';
 import api from '../../api';
 import {useEffect, useState} from 'react';
 
@@ -15,6 +15,7 @@ export default function Expenses() {
             setExpenses(res.data.expenses);
         });
     }
+    
 
     useEffect(() => {
         fetchExpenses();
@@ -45,7 +46,7 @@ export default function Expenses() {
         return expenses.map((expense) => (
             <tr id={expense.id}>
                 <td>{expense.id}</td>
-                <td>{expense.amount}</td>
+                <td>${expense.amount}</td>
                 <td>{expense.date}</td>
                 <td>{expense.category.name}</td>
                 <td>
@@ -71,12 +72,18 @@ export default function Expenses() {
         ))
     }
 
+    if (!localStorage.getItem('AccessToken')) {
+        return (
+            
+            <h6><b>Please Log in !</b></h6>   
+        );
+    }
     return (
-        <AppContainer title="Expenses Table">
+        <TableContainer title="Expenses Table">
         
             <Link to="/expenses/add" className="btn btn-primary">Add Expense</Link>
                     <div className = "table-responsive">
-                        <table striped bordered hover size="sm" striped bordered hover variant="dark" className="table -table-striped mt-4">
+                        <table className="table -table-striped mt-4">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -91,6 +98,6 @@ export default function Expenses() {
                             </tbody>
                         </table>
                     </div>
-        </AppContainer>
+        </TableContainer>
     );
 }

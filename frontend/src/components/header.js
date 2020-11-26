@@ -18,7 +18,12 @@ function Header() {
       <NavLink activeClassName="active"  to="/logout">
         Log Out
       </NavLink>
+      <h4>
+      Hello {localStorage.getItem('UsersName')} !
+      </h4>
     </nav>
+
+  
   );
 
   

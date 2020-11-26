@@ -1,9 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 
-export default function AppContainer({title, children}) {
+export default function RegisterFormContainer({title, children}) {
     return (
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '62vh'}} className="container">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '65vh'}} className="container">
             <div className="card">
                 <h5 className="card-header">{title}
                 </h5>

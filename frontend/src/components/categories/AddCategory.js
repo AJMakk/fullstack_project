@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import AppContainer from '../AppContainer';
+import AppContainer from '../containers/AppContainer';
 import api from '../../api';
 
 export default function AddCategory() {
@@ -23,6 +23,13 @@ export default function AddCategory() {
         }
     };
 
+    if (!localStorage.getItem('AccessToken')) {
+        return (
+            
+            <h6><b>Please Log in !</b></h6>   
+        );
+    }
+    
     return (
         <AppContainer title="Add Category">
         <form>

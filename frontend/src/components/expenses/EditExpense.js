@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import AppContainer from '../AppContainer';
+import AppContainer from '../containers/AppContainer';
 import api from '../../api';
 
 export default function EditExpense() {
@@ -35,6 +35,12 @@ export default function EditExpense() {
         })
     }, []);
 
+    if (!localStorage.getItem('AccessToken')) {
+        return (
+            
+            <h6><b>Please Log in !</b></h6>   
+        );
+    }
     return (
         <AppContainer title="Edit Expense">
         <form>

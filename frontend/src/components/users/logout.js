@@ -9,8 +9,11 @@ export default function Logout() {
   const handleLogout = () => {
     api.logout().then(res => {
       console.log("res: ",res);
+      
       localStorage.removeItem('AccessToken');
+      localStorage.removeItem('UsersName');
       localStorage.clear();
+
       history.push("/");
       window.location.reload();
       alert(res.data.message) ;
@@ -19,9 +22,11 @@ export default function Logout() {
   }
 
   return (
-    <button type="button" onClick={handleLogout}>
-      Go to Login Page
-    </button>
+    <div class="logout-button-container">
+      <button id="logout-button" type="button" onClick={handleLogout}>
+        Go to Login Page
+      </button>
+    </div>
   );
 
 }

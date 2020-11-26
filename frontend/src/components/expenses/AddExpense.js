@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-import AppContainer from '../AppContainer';
+import AppContainer from '../containers/AppContainer';
+import Popup from 'reactjs-popup';
 import api from '../../api';
 
 export default function AddExpense() {
@@ -9,6 +10,7 @@ export default function AddExpense() {
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const [categoryId, setCategoryId] = useState('');
+   /*  const [categories, setCategories] = useState(null); */
 
     const onAddSubmit = async () => {
         setLoading(true);
@@ -23,6 +25,25 @@ export default function AddExpense() {
             setLoading(false);
         }
     };
+
+   /*  const fetchCategories = () => {
+        api.getAllCategories().then(res => {
+           setCategories(res.data.categories);
+        });
+    } */
+
+  /*   useEffect(() => {
+        fetchCategories();
+
+    }, []);
+
+ */
+    if (!localStorage.getItem('AccessToken')) {
+        return (
+            
+            <h6><b>Please Log in !</b></h6>   
+        );
+    }
 
     return (
         <AppContainer title="Add Expense">
@@ -54,6 +75,25 @@ export default function AddExpense() {
                 value={categoryId}
                 onChange={e => setCategoryId(e.target.value)}/>
             </div>
+       {/*      <div className="form-group">
+                <label for="categories">Choose a category:</label>
+                <input
+                    type = "select"
+                    name = "category"
+                    onChange = {e => setCategoryId(e.currenttarget.value)}
+                >
+                    { categories.map((category) =>
+                        <option 
+                        name="category_id" 
+                        key = {category.id}
+                        value = {category.id}
+                        >
+                        {category.name}
+                        </option>
+                    )}
+              
+                </input>
+            </div> */}
             <div className="form-group">
                 <button
                 type="button"
